@@ -1,0 +1,8 @@
+DriverVersion: 9.17.10.4229
+DriverDate: 5-27-2015
+DeviceID: PCI\VEN_8086&DEV_0126&SUBSYS_500017AA&REV_09
+AdapterVendorID: 0x8086
+AdapterDeviceID: 0x0126
+AdapterSubsysID: 0x500017aa
+DeviceKey: System\CurrentControlSet\Control\Video\{72EDB505-6719-4932-A1CF-12EFE34DAE70}\0000
+DeviceString: Intel(R) HD Graphics 3000

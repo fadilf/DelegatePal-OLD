@@ -1,0 +1,141 @@
+@font-face {
+    font-family: icomoon;
+    src: url(../fonts/icomoon.eot);
+    src: url(../fonts/icomoon.eot) format('embedded-opentype'), url(../fonts/icomoon.ttf) format('truetype'), url(../fonts/icomoon.woff) format('woff'), url(../fonts/icomoon.svg) format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+.fa {
+    font-family: icomoon!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+.fa.fa-school:before {
+    content: "\e909"
+}
+.fa.fa-close:before,
+.fa.fa-remove:before,
+.fa.fa-times:before {
+    content: "\f00d"
+}
+.fa.fa-repeat:before,
+.fa.fa-rotate-right:before {
+    content: "\f01e"
+}
+.fa.fa-bold:before {
+    content: "\f032"
+}
+.fa.fa-italic:before {
+    content: "\f033"
+}
+.fa.fa-align-left:before {
+    content: "\f036"
+}
+.fa.fa-align-center:before {
+    content: "\f037"
+}
+.fa.fa-align-right:before {
+    content: "\f038"
+}
+.fa.fa-align-justify:before {
+    content: "\f039"
+}
+.fa.fa-dedent:before,
+.fa.fa-outdent:before {
+    content: "\f03b"
+}
+.fa.fa-indent:before {
+    content: "\f03c"
+}
+.fa.fa-image:before,
+.fa.fa-photo:before,
+.fa.fa-picture-o:before {
+    content: "\f03e"
+}
+.fa.fa-pencil:before {
+    content: "\e90c"
+}
+.fa.fa-chevron-left:before {
+    content: "\e905";
+    font-weight: 800
+}
+.fa.fa-ban:before {
+    content: "\f05e"
+}
+.fa.fa-chevron-up:before {
+    content: "\e90b"
+}
+.fa.fa-chevron-down:before {
+    content: "\e90a"
+}
+.fa.fa-chain:before,
+.fa.fa-link:before {
+    content: "\f0c1"
+}
+.fa.fa-list-ul:before {
+    content: "\f0ca"
+}
+.fa.fa-list-ol:before {
+    content: "\f0cb"
+}
+.fa.fa-strikethrough:before {
+    content: "\f0cc"
+}
+.fa.fa-underline:before {
+    content: "\f0cd"
+}
+.fa.fa-rotate-left:before,
+.fa.fa-undo:before {
+    content: "\f0e2"
+}
+.fa.fa-cloud-download:before {
+    content: "\e906"
+}
+.fa.fa-quote-right:before {
+    content: "\f10e"
+}
+.fa.fa-code:before {
+    content: "\f121"
+}
+.fa.fa-youtube-play:before {
+    content: "\f16a"
+}
+.fa.fa-trash:before {
+    content: "\e907"
+}
+.fa.fa-link2:before {
+    content: "\e901"
+}
+.fa.fa-share-alt:before {
+    content: "\e90d";
+    position: relative;
+    top: 1px;
+    left: -1px
+}
+.fa.fa-sphere:before {
+    content: "\e902"
+}
+.fa.fa-search:before {
+    content: "\1f576"
+}
+.fa.fa-exit:before {
+    content: "\e908"
+}
+.fa.fa-book:before {
+    content: "\e903"
+}
+.fa.fa-mash:before {
+    content: "\e904"
+}
+.fa.fa-check:before {
+    content: "\e90e"
+}
+.fa.fa-cross:before {
+    content: "\e90f"
+}
