@@ -294,13 +294,13 @@ function register($name, $username, $email, $password, $fb = false, $pic = ""){
     }
     elseif($fb and ($nottaken === true)){
         setprofilepic($pic, $email);
-        $subject = "New MUNme Account";
+        $subject = "New DelegatePal Account";
         $message = "<html>
         <head>
-        <title>New MUNme Account</title>
+        <title>New DelegatePal Account</title>
         </head>
         <body>
-        Thank you for signing up for MUNme. Your password has been set to $unhashed.
+        Thank you for signing up for DelegatePal. Your password has been set to $unhashed.
         </body>
         </html>";
         global $rheaders;
@@ -311,10 +311,10 @@ function register($name, $username, $email, $password, $fb = false, $pic = ""){
         $url = "$websiteurl/confirm.php";
         $url .= "?user=".urlencode($username);
         $url .= "&token=".urlencode($confirmhash);
-        $subject = "Email confirmation for MUNme";
+        $subject = "Email confirmation for DelegatePal";
         $message = "<html>
         <head>
-        <title>Email confirmation for MUNme</title>
+        <title>Email confirmation for DelegatePal</title>
         </head>
         <body>
         <a href='$url'>Click here to confirm your account.</a>
