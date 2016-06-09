@@ -766,7 +766,7 @@ function hideNoteMake(){
     d.getElementById("dragndrop").style.display = "none";
 }
 setTimeout(function(){
-        d.getElementsByClassName("sideitem")[1].click();
+//        d.getElementsByClassName("sideitem")[1].click();
     var dropz = d.getElementById('dropzone');
     if(dropz){
         var dropzone = new Dropzone("div#dropzone", { url: "submit.php"});
