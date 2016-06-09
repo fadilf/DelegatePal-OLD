@@ -1015,7 +1015,7 @@ function minJS(){
             $minifiedPath = 'js/script.min.js';
             $minifier->minify($minifiedPath);
         }
-        return '<script src="js/angular.min.js"></script><script src="js/ocLazyLoad.min.js"></script><script src="js/dropzone.js"></script><script src="js/script.min.js"></script>';
+        return '<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/oclazyload/1.0.9/ocLazyLoad.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script><script src="js/script.min.js"></script>';
     } else {
         return '<script src="js/angular.min.js"></script><script src="js/ocLazyLoad.min.js"></script><script src="js/dropzone.js"></script><script src="js/script.js"></script>';
     }
