@@ -21,7 +21,7 @@ $folderarr = array_map("notearr", $folderarr, $falsearr, $blocarr);
 $ufolders = foldersarr($bloc);
 
 header("Content-Disposition: attachment; filename='merged.pdf'");
-//header("Content-type: application/pdf");
+header("Content-type: application/pdf");
 $pdf = new Merger();
 $group = randtoken(20);
 
