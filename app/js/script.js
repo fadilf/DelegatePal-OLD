@@ -174,7 +174,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
                     },100);
                 });
             } else if($scope.noteinfo.type==="image"){
-                    $scope.title = "Note";
+                $scope.title = "Note";
             } else {
                 $http.get("json.php?noteid="+noteid+"&bloc="+blc).then(function(json){
                     if(!blc){
@@ -223,7 +223,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
     }
     $scope.newFolder = function(){
         $scope.foldername = "";
-        $scope.modalTitle = "New Folder";
+        $scope.modalTitle = "New Binder";
         $scope.modalContent = "";
         $scope.modalVisible = true;
         $scope.createFolder = function(foldername){
@@ -324,14 +324,19 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
             }
         }
         $scope.downloadMerged = function(){
-            clickdown.href = "merge.php?notes=" + selected.toString() + "&docs=" + docs.toString();
-            clickdown.click();
+            $scope.modalTitle = "Mash Binder";
+            $scope.modalVisible = true;
+            var mashlink = "merge.php?notes=" + selected.toString() + "&docs=" + docs.toString() + "&bloc=" + $scope.bloc;
+            setTimeout(function(){
+                var downloadc = d.getElementById("filedownload");
+                downloadc.innerHTML = "<a class='filedownload' href='" + mashlink + "' target='_blank'>Download</a>";
+            },0);
         }
     }
     $scope.downloadFolder = function(index){
         $scope.bottomClick = true;
         $scope.modalVisible = true;
-        $scope.modalTitle = "Folder Download";
+        $scope.modalTitle = "Binder Download";
         var folder = $scope.json.folders[index];
         if(folder.notes.length){
             $scope.modalContent = "Loading...";
@@ -346,7 +351,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
                             var file = zip.generate();
                             $scope.modalContent = "";
                             var downloadc = d.getElementById("filedownload");
-                            downloadc.innerHTML = "<a href='data:application/zip;base64," + file + "' class='filedownload'>Download</a>";
+                            downloadc.innerHTML = "<a href='data:application/zip;base64," + file + "' class='filedownload' download='archive.zip'>Download</a>";
                         }
                     });
                 }
@@ -386,7 +391,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
     $scope.deleteFolderModal = function(index){
         $scope.foldername = $scope.json.folders[index].name;
         $scope.bottomClick = true;
-        $scope.modalTitle = "Delete Folder";
+        $scope.modalTitle = "Delete Binder";
         $scope.modalVisible = true;
         $scope.deleteFolder = function(){
             $http.post("submit.php",{
@@ -396,8 +401,8 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
                 if(data === "1") {
                     refresh();
                     $scope.modalTitle = $scope.foldername + " Deleted";
-                    $scope.modalContent = "The folder " + $scope.foldername + " has been deleted.";
-                } else alert("Error while deleting folder");
+                    $scope.modalContent = "The binder " + $scope.foldername + " has been deleted.";
+                } else alert("Error while deleting binder");
             });
         }
     }
@@ -406,7 +411,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
         $ocLazyLoad.load(['js/tinycolor.min.js','js/angularjs-color-picker.min.js']).then(function(){
             $scope.foldername = $scope.json.folders[index].name;
             $scope.foldercolor = $scope.json.folders[index].color;
-            $scope.modalTitle = "Edit Folder";
+            $scope.modalTitle = "Edit Binder";
             $scope.modalVisible = true;
             $scope.editFolder = function(foldername,foldercolor){
                 $http.post("submit.php",{
@@ -482,7 +487,7 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
                             var file = zip.generate();
                             $scope.modalContent = "";
                             var downloadc = d.getElementById("filedownload");
-                            downloadc.innerHTML = "<a href='data:application/zip;base64," + file + "' class='filedownload'>Download</a>";
+                            downloadc.innerHTML = "<a href='data:application/zip;base64," + file + "' class='filedownload' download='archive.zip'>Download</a>";
                         }
                     });
                 }
@@ -766,7 +771,7 @@ function hideNoteMake(){
     d.getElementById("dragndrop").style.display = "none";
 }
 setTimeout(function(){
-//        d.getElementsByClassName("sideitem")[1].click();
+    //        d.getElementsByClassName("sideitem")[1].click();
     var dropz = d.getElementById('dropzone');
     if(dropz){
         var dropzone = new Dropzone("div#dropzone", { url: "submit.php"});

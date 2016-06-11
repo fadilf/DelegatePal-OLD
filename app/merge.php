@@ -20,11 +20,50 @@ $falsearr = array_fill(0, $sfolderarr, false);
 $folderarr = array_map("notearr", $folderarr, $falsearr, $blocarr);
 $ufolders = foldersarr($bloc);
 
-header("Content-Disposition: attachment; filename='merged.pdf'");
-header("Content-type: application/pdf");
 $pdf = new Merger();
 $group = randtoken(20);
 
+// First page
+function pageval(){
+    global $folderarr;
+    global $bloc;
+    return '
+    <div style="text-align:center;">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <img style="display:inline-block; width:500px;" src="img/merged.png" />
+    <br />
+    <br />
+    <br />
+    <img style="display:inline-block; width:450px;" src="img/textlogo.png" />
+    <br />
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+    <br />
+    <div style="font-size:3.3em; margin-top:-.5em; font-family:clearsans; color:#101010;">
+    '.
+    folderinfo($folderarr[0]["folder"], $bloc)["name"]
+    .'
+    </div>
+    <br />
+    <hr />
+    </div>
+    ';
+}
+
+$kpdf = new mPDF();
+$kpdf->WriteHTML(pageval());
+$blob = $kpdf->Output(null,"S");
+file_put_contents("sandbox/$group-.pdf", $blob);
+$pdf->addFromFile("sandbox/$group-.pdf");
+
+// Included pages
 if(!empty($_GET["docs"])){
     $docarr = explode(",",$_GET["docs"]);
     foreach($docarr as $file){
@@ -33,15 +72,18 @@ if(!empty($_GET["docs"])){
     }
 }
 
+set_time_limit(60);
+    
+// Notebook notes
 foreach($folderarr as $i => $note){
     $approved = false;
     foreach($ufolders as $notebook)
         if($note["folder"] == $notebook["id"]){
             $approved = true;
-            break;
         }
-    if(!$approved)
+    if(!$approved){
         $note["type"] = null;
+    }
     switch($note["type"]){
         case "text":
             $id = $note["id"];
@@ -50,7 +92,25 @@ foreach($folderarr as $i => $note){
             $blob = $mpdf->Output(null,"S");
             file_put_contents("sandbox/$group-$i.pdf", $blob);
             $pdf->addFromFile("sandbox/$group-$i.pdf");
-            break;
+            $total++;
+            break;/*
+        case "url":
+            $prefix = "http://";
+            $pr1 = "HTTP://";
+            $pr2 = "HTTPS://";
+            $comp = strtoupper($note["data"]);
+            if(strpos($comp,$pr1)===0 or strpos($comp,$pr2)===0) $prefix = "";
+            $data = $prefix . $note["data"];
+            if(filter_var($data, FILTER_VALIDATE_URL) !== false){
+                if(PHP_OS === "Linux")
+                    $cmd = "cd ../wkhtmltopdf/bin && ./wkhtmltopdf $data ../../app/sandbox/$group-$i.pdf";
+                else
+                    $cmd = "cd ../wkhtmltopdf/bin && wkhtmltopdf.exe $data ../../app/sandbox/$group-$i.pdf";
+                exec($cmd, $result);
+                var_dump($result);
+                $pdf->addFromFile("sandbox/$group-$i.pdf");
+            }
+            break;*/
         case "image":
             $im = new Imagick();
             $uri = $note["data"];
@@ -61,6 +121,7 @@ foreach($folderarr as $i => $note){
             $blob = $im->getImageBlob();
             file_put_contents("sandbox/$group-$i.pdf", $blob);
             $pdf->addFromFile("sandbox/$group-$i.pdf");
+            $total++;
             break;
         case "word":
             $data = $note["data"];
@@ -73,6 +134,7 @@ foreach($folderarr as $i => $note){
                 $cmd = "cd ../loffice/App/libreoffice/program && soffice.exe --headless --convert-to pdf ../../../../app/sandbox/$group-$i.docx --outdir ../../../../app/sandbox/";
             exec($cmd);
             $pdf->addFromFile("sandbox/$group-$i.pdf");
+            $total++;
             break;
         case "pdf":
             $data = $note["data"];
@@ -80,9 +142,11 @@ foreach($folderarr as $i => $note){
             $data = substr($data,$strpos + 8);
             file_put_contents("sandbox/$group-$i.pdf", base64_decode($data));
             $pdf->addFromFile("sandbox/$group-$i.pdf");
+            $total++;
     }
 }
 
+header("Content-type: application/pdf");
 echo $pdf->merge();
 array_map('unlink', glob("sandbox/$group-*"));
 

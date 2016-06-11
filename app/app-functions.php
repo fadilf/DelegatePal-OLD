@@ -196,6 +196,41 @@ function blocsarr(){
     }
 }
 
+// Returns folder info from ID
+function folderinfo($folderid, $bloc = false){
+
+    // Checking if User is logged in
+    if(!loggedin()) return "User not logged in.";
+
+    // Executing SQL Commands
+    else {
+        global $dblink;
+        if(!$bloc)
+            $sqlquery = "SELECT FolderName, Color FROM app_folders WHERE IDofTheFolder=?";
+        else
+            $sqlquery = "SELECT BlocName, Color FROM app_blocs WHERE BlocID=?";
+        $statement = mysqli_prepare($dblink, $sqlquery);
+        mysqli_stmt_bind_param($statement, "s", $folderid);
+        mysqli_stmt_bind_result($statement, $foldername, $color);
+        $success = mysqli_stmt_execute($statement);
+        $folderjson;
+        if($success) {
+            mysqli_stmt_fetch($statement);
+            $folderjson = [
+                "name" => $foldername,
+                "color" => $color
+            ];
+            mysqli_stmt_close($statement);
+            return $folderjson;
+        } else return "Error while performing operation";
+    }
+}
+
+// Returns folder info from ID
+function folderinfojson($folderid, $bloc = false){
+    folderinfo($folderid, $bloc);
+}
+
 // Returns folders of logged in user
 function foldersarr($bloc = false){
 
@@ -1007,7 +1042,7 @@ function checkuserhash($userhash = "", $userid = ""){
 function minJS(){
     global $websiteurl;
     if(strcmp($websiteurl,"https://www.delegatepal.com")===0){
-//    if(true){
+        //    if(true){
         if(!file_exists("js/script.min.js")){
             $sourcePath = 'js/script.js';
             $minifier = new Minify\JS($sourcePath);

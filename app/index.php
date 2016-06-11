@@ -43,9 +43,9 @@ if(!loggedin()){
                 <label for="menub" id="secondary"></label>
             </div>
             <ul id="sidebar">
-                <li class="sideitem" title="Notebooks" ng-click="title='Notebooks';refresh()">
+                <li class="sideitem" title="Binders" ng-click="title='Notebooks';refresh()">
                     <i class="fa fa-book"></i>
-                    <span class="sidetxt">Notebooks</span>
+                    <span class="sidetxt">Binders</span>
                 </li>
                 <li class="sideitem" title="Research Tool" ng-click="searchPage()">
                     <i class="fa fa-search"></i>
@@ -82,7 +82,7 @@ if(!loggedin()){
                         </span>
                     </div>
                     <div ng-click="openBloc($index)" class="folderitem blocitem item mod-{{bloc.moderator}}" ng-repeat="bloc in json.blocs" ng-attr-style="background:{{bloc.color}}">
-                        <i class="fa fa-sphere"></i>
+                        <i class="fa fa-school"></i>
                         <span class="text">{{bloc.name}}</span>
                         <span class="editrow">
                             <button ng-click="downloadBloc($index)">
@@ -106,7 +106,7 @@ if(!loggedin()){
                             </span>
                         </span>
                     </div>
-                    <div ng-click="newFolder()" class="folderplus plusitem" title="Create a new folder">
+                    <div ng-click="newFolder()" class="folderplus plusitem" title="Create a new binder">
                         <span class="text">
                             <i class="plus">+</i>
                         </span>
@@ -396,7 +396,6 @@ if(!loggedin()){
                         <button type="button" ng-click="downloadMerged()">Download</button>
                     </div>
                 </div>
-                <a href="" id="clickdown" download></a>
             </div>
             <div id="modalcontainer" ng-if="modalVisible===true" ng-click="hideModal()">
                 <div id="modal">
@@ -405,10 +404,10 @@ if(!loggedin()){
                         <h3>{{modalTitle}}</h3>
                         <div id="modalcontent">
                             {{modalContent}}
-                            <div ng-if="modalTitle=='New Folder'">
+                            <div ng-if="modalTitle=='New Binder'">
                                 <form ng-submit="createFolder(foldername)">
-                                    <input type="text" placeholder="Folder Name" ng-model="foldername" />
-                                    <button type="submit">Create Folder</button>
+                                    <input type="text" placeholder="Binder Name" ng-model="foldername" />
+                                    <button type="submit">Create Binder</button>
                                 </form>
                             </div>
                             <div ng-if="modalTitle=='New Note'">
@@ -439,16 +438,16 @@ if(!loggedin()){
                                     </div>
                                 </div>
                             </div>
-                            <div ng-if="modalTitle=='Edit Folder'">
+                            <div ng-if="modalTitle=='Edit Binder'">
                                 <form ng-submit="editFolder(foldername,foldercolor)">
-                                    <input type="text" placeholder="Folder Name" ng-model="foldername" />
+                                    <input type="text" placeholder="Binder Name" ng-model="foldername" />
                                     <color-picker ng-model="foldercolor" color-picker-format="'hex'" color-picker-alpha="false" color-picker-swatch-bootstrap="false"></color-picker>
-                                    <button type="submit">Save Changes to Folder</button>
+                                    <button type="submit">Save Changes to Binder</button>
                                 </form>
                             </div>
-                            <div ng-if="modalTitle=='Delete Folder'">
+                            <div ng-if="modalTitle=='Delete Binder'">
                                 <form ng-submit="deleteFolder()">
-                                    Are you sure you want to delete the folder - "{{foldername}}"?
+                                    Are you sure you want to delete the binder - "{{foldername}}"?
                                     <button type="submit">Confirm Deletion</button>
                                 </form>
                             </div>
@@ -480,7 +479,7 @@ if(!loggedin()){
                                     </div>
                                 </div>
                             </div>
-                            <div ng-if="modalTitle=='Folder Download'" id="filedownload"></div>
+                            <div ng-if="modalTitle=='Binder Download'" id="filedownload"></div>
                             <div ng-if="modalTitle=='New Bloc'">
                                 <form ng-submit="createBloc(blocname)">
                                     <input type="text" placeholder="Bloc Name" ng-model="blocname" />
@@ -513,6 +512,7 @@ if(!loggedin()){
                                 </form>
                             </div>
                             <div ng-if="modalTitle=='Bloc Download'" id="filedownload"></div>
+                            <div ng-if="modalTitle=='Mash Binder'" id="filedownload"></div>
                         </div>
                     </div>
                 </div>
