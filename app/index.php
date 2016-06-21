@@ -124,9 +124,9 @@ if(!loggedin()){
                     <br id="newline" />
                     <div ng-click="openNote($index)" class="noteitem item type-{{note.type}}" ng-repeat="note in json.folders[folderindex].notes" ng-attr-title="{{note.name}}" ng-if="!bloc">
                         <div class="preview">
-                            <img ng-if="note.type=='image'" ng-src="{{note.preview}}" />
+                            <img ng-if="note.type=='image'||note.type=='url'" ng-src="{{note.preview}}" />
                             <img class="doc" ng-if="note.type=='pdf'||note.type=='word'" ng-src="img/{{note.type}}-thumb.svg" />
-                            <div ng-if="note.type=='text'||note.type=='url'" class="previewtext">
+                            <div ng-if="note.type=='text'" class="previewtext">
                                 <span class="floatelement"></span>
                                 {{note.preview}}
                                 <span ng-if="note.preview.length==0">Empty Note</span>
@@ -151,9 +151,9 @@ if(!loggedin()){
                     </div>
                     <div ng-click="openNote($index)" class="noteitem item type-{{note.type}}" ng-repeat="note in json.blocs[folderindex].notes" ng-attr-title="{{note.name}}" ng-if="bloc">
                         <div class="preview">
-                            <img ng-if="note.type=='image'" ng-src="{{note.preview}}" />
+                            <img ng-if="note.type=='image'||note.type=='url'" ng-src="{{note.preview}}" />
                             <img class="doc" ng-if="note.type=='pdf'||note.type=='word'" ng-src="img/{{note.type}}-thumb.svg" />
-                            <div ng-if="note.type=='text'||note.type=='url'" class="previewtext">
+                            <div ng-if="note.type=='text'" class="previewtext">
                                 <span class="floatelement"></span>
                                 {{note.preview}}
                                 <span ng-if="note.preview.length==0">Empty Note</span>

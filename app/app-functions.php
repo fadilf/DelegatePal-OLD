@@ -75,25 +75,20 @@ function preview($data, $type, $alpha = true){
             }
             return $thumb;
         case "url":
-            $original = $data;
+            $original = "data:image/png;base64,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";
             $prefix = "http://";
             $pr1 = "HTTP://";
             $pr2 = "HTTPS://";
             $comp = strtoupper($data);
             if(strpos($comp,$pr1)===0 or strpos($comp,$pr2)===0) $prefix = "";
-            $data = $prefix . $data;
-            $unprefixed = substr($data,7);
-            if(substr($unprefixed,0,1) === "/") $unprefixed = substr($unprefixed,1);
-
-            if(checkdnsrr($unprefixed,"A")){
-                libxml_use_internal_errors(true);
-                $doc = new domdocument();
-                $doc->loadHTMLFile($data);
-                $array = $doc->getElementsByTagName("title");
-                $titletag = $doc->saveXML($array->item(0));
-                $thumb = substr($titletag, 7, -8);
-                if($thumb !== "ersion=") return $thumb;
-                else return $original;
+            $data = strtolower($prefix . $data);
+            $host = parse_url($data)["host"];
+            if(checkdnsrr($host,"A")){
+                $blob = file_get_contents("https://logo.clearbit.com/$host");
+                if((strcmp($blob,"Invalid domain")!==-1))
+                   return "data:".getimagesizefromstring($blob)["mime"].";base64,".base64_encode($blob);
+                else
+                    return $original;
             } else return $original;
             break;
         case "image":
