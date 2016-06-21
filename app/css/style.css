@@ -1584,6 +1584,13 @@ body:not(.touch) .noteitem:hover:not(.mash) .preview>* {
     transform: scale(1);
     opacity: 1;
 }
+body:not(.touch) .noteitem.type-url:hover:not(.mash) .preview>* {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: scale(.9);
+    transform: scale(.9);
+    opacity: .9;
+}
 body:not(.touch) .noteitem:hover:not(.mash)::after {
     opacity: 0;
 }
