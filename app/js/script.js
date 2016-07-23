@@ -681,7 +681,8 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
     $scope.searchPage = function(){
         $scope.title = "Research Tool";
         $scope.query = "";
-        var plain, country, ngo, solutions, un;
+        $scope.sval = "";
+        var plain, country, ngo, solutions, un, sval;
         function setSVGs(){
             plain = '<path id="path15" d="M150.75 223.06l-5.4-.57-1.73-2.07c7.6-7.1 12.7-16.82 13.8-27.86 2.6-24.6-15.2-46.63-39.8-49.22-24.6-2.58-46.6 15.26-49.2 39.86-2.6 24.6 15.3 46.65 39.9 49.23 11.1 1.16 21.6-1.82 30.1-7.7l1.7 2.1-.5 5.42 30.7 37.8 11.3-9.15-30.6-37.9zm-41.1-4.32c-17.07-1.8-29.4-17.02-27.6-34.08 1.8-17.06 17-29.4 34.07-27.6 17.1 1.8 29.4 17.02 27.6 34.08-1.8 17.07-17 29.4-34 27.6z"/>',
                 country = '<path fill="#262262" d="M.03 216.4l97.26-62.84 44.64 69.12-97.26 62.86z"/><path fill="#434B60" d="M94.8 143.6c2.5-1.6 5.1-1.9 5.9-.7l4.2 6.5 76.8 118.9c.8 1.2-.6 3.5-3.1 5.1-2.5 1.6-5.1 1.9-5.9.7l-76.8-119-4.2-6.5c-.7-1.2.6-3.4 3.1-5z"/><circle cx="73.3" cy="220.3" r="27.9" fill="#7FABDA"/><path fill="#1B9172" d="M72.1 192.7c.1-.1.1-.2.2-.3-5 .2-10 1.7-14.5 4.7-4.9 3.3-8.5 7.8-10.5 12.9.1.1.2.2.3.2 3.9 2.4 9.8 6.8 14.1 5.8 2.1-.5 3.5-1.8 5.7-2 .2 0 .6 0 .8.1 1.6.7 2.3 2.7 3.4 2.6.9-.1 1.7.4 1.9 1.2.7 3.5 3.8 6 7.8 6.4 2.8.3 3.6 4.8 3.9 8.6.1 1.4 1.8 1.8 2.7.8 1.3-1.7 2.1-3.5 2.8-6 1-3.6 0-6.1 1.2-9.3v-.1c-.6-2.1-1.2-7.1-3.7-6.9-2.3.3-4.7-1.9-7.6-2.6-.3-.1-.7 0-1 .2-2.2 1.1-4.2.2-4.9 2.1-.5 1.5-2 1.8-3.2.8-.4-.3-.8-.6-1.7-.3-.7.2-1.4-.3-1.6-1-.2-.9-1.7.2-2.4.9-.2.2 0-1.2-.2-.9-.6 1.2-2.4 1-3.1-.1-.7-1.2-.5-1.3 1.3-2.8 1.5-2.4 2.9-2.3 4.5.1 1.4-.7 1.5-1.5.2-2.6-.4-.3-.6-.8-.5-1.3.2-4.8 1.3-7.5 4.1-11.2z"/>',
@@ -759,6 +760,33 @@ DelegatePal.controller("control",function($scope,$http,$ocLazyLoad){
                     }
                 }
                 sbox.style.transition = ".1s";
+            }
+            $scope.switchT = function(change){
+                if($scope.sval === ""){
+                    if(change)
+                        document.getElementById("cradio").click();
+                    else
+                        d.getElementById("sradio").click();
+                    return;
+                }
+                var tMap = {
+                    1: "cradio",
+                    2: "tradio",
+                    3: "comradio",
+                    4: "sradio"
+                }
+                var nMap = {
+                    "country": 1,
+                    "topic": 2,
+                    "committee": 3,
+                    "unstance": 4
+                }
+                var newVal = nMap[sval]+change;
+                if(newVal === 0)
+                    newVal = 4;
+                else if(newVal === 5)
+                    newVal = 1;
+                document.getElementById(tMap[newVal]).click();
             }
         },0);
     }

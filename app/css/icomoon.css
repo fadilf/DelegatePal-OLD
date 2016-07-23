@@ -61,6 +61,10 @@
 .fa.fa-pencil:before {
     content: "\e90c"
 }
+.fa.fa-chevron-right:before {
+    content: "\e910";
+    font-weight: 800
+}
 .fa.fa-chevron-left:before {
     content: "\e905";
     font-weight: 800

@@ -1158,7 +1158,8 @@ textarea {
 Research Tool Page
 */
 #simg {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     margin: 5px auto;
     width: 40%;
     max-width: 200px;
@@ -1311,6 +1312,35 @@ Research Tool Page
     display: inline-block;
     line-height: normal;
     vertical-align: middle;
+}
+#sArrows {
+    display: block;
+}
+#leftS,
+#rightS {
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+    outline: none;
+    background: #222;
+    color: #d8d8d8;
+    border-radius: 50%;
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 3em;
+    text-align: center;
+    line-height: 60px;
+    width: 60px;
+    height: 60px;
+    transition: .2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    margin-top: -20px;
+}
+#leftS:hover,
+#rightS:hover {
+    opacity: 1 !important;
 }
 
 
@@ -1479,7 +1509,7 @@ Sidebar and Responsiveness
     }
     .results #sbar {
         margin: 15px auto !important;
-        margin-top: -10px !important;
+        margin-top: 5px !important;
         transition: .2s,
             margin .3s .8s;
     }
@@ -1489,6 +1519,11 @@ Sidebar and Responsiveness
 /*
 Touch Check
 */
+
+body:not(.touch) #leftS,
+body:not(.touch) #rightS {
+    opacity: 0.6;
+}
 body:not(.touch) .item span.editrow button:hover {
     background: #ddd;
     color: #444;
